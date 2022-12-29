@@ -1,0 +1,58 @@
+<div class="container">
+<h1 style= "font-family: Poppins, sans-serif;">City Air Quality App</h1>
+<div *ngIf="errorMsg" style="color:red">
+    {{errorMsg}}
+</div>
+<div class="container" style="float: left; border-color: firebrick; max-width: 350px;">
+    <mat-label>Enter City1</mat-label>
+    <div></div>
+    <mat-form-field apperance = "fill" class = "middle">    
+        <mat-select [(value)]="selectedCity" (selectionChange)="onChange()" placeholder = "Select City1" >
+            <mat-option *ngFor="let item of cities" [value]="item.city"> 
+             {{item.city}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <div *ngIf="latestResults">
+
+    <div class = "info" *ngFor="let item of latestResults.results">
+        <b>{{item.location}} - {{item.city}} - {{item.country}}</b>
+        <div></div>
+        {{item.coordinates.latitude}} || {{item.coordinates.longitude}} 
+        <li *ngFor="let subitem of item.measurements">
+            {{subitem.parameter}} -- {{subitem.value}} -- {{subitem.unit}}
+        </li>
+    </div>
+    </div>
+
+</div>
+
+<div class="container" style="float: right; border-color: firebrick; max-width: 350px;">
+    <mat-label>Enter City2</mat-label>
+    <div style="float: middle">
+        <mat-form-field apperance = "fill2" class = "middle">    
+            <mat-select [(value)]="selectedCity2" (selectionChange)="onChange2()" placeholder = "Select City2" >
+                <mat-option *ngFor="let item of cities" [value]="item.city"> 
+                 {{item.city}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>    
+        <div *ngIf="latestResults2">
+    
+        <div class = "info" *ngFor="let item of latestResults2.results">
+            <b>{{item.location}} - {{item.city}} - {{item.country}}</b>
+            <div></div>
+            {{item.coordinates.latitude}} || {{item.coordinates.longitude}} 
+            <li *ngFor="let subitem of item.measurements">
+                {{subitem.parameter}} -- {{subitem.value}} -- {{subitem.unit}}
+            </li>
+        </div>
+        </div>
+    
+    </div>
+</div>
+
+
+    
